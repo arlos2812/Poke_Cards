@@ -1,0 +1,323 @@
+@font-face {
+  font-family: 'PokemonSolid';
+  src: url('./assets/PokemonSolid.ttf') format('truetype');
+}
+
+* {
+  font-family: 'PokemonSolid', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+}
+
+body {
+  margin: 0;
+  background-color: #050b18;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* --- HEADER --- */
+.header {
+  padding: 15px 40px;
+  background: #0f172a;
+  border-bottom: 6px solid #ffcb05;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+.header-left,
+.header-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.header-right {
+  justify-content: flex-end;
+}
+.header-center {
+  flex: 2;
+  text-align: center;
+}
+.title {
+  font-size: 3.5rem;
+  color: #ffcb05;
+  text-shadow: 4px 4px #3b4cca;
+  margin: 0;
+}
+.search-input {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 3px solid #3b4cca;
+  background: #1e293b;
+  color: white;
+  width: 250px;
+  outline: none;
+}
+.btn-back {
+  background: #ffcb05;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+}
+
+/* --- LOADER AJUSTADO PARA EJE VERTICAL --- */
+.loader {
+  text-align: center;
+  margin-top: 10vh;
+}
+.ball-wrapper {
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ball-container {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.single-ball {
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  display: block;
+  /* Sincronizado a 2.5s */
+  animation: vertical-rotation 2.5s ease-in-out infinite;
+}
+
+@keyframes vertical-rotation {
+  0% {
+    transform: translateY(60px) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0) scale(1.2) rotate(0deg);
+    opacity: 1;
+  } /* Aparece vertical */
+  20% {
+    transform: rotate(0deg);
+  } /* Pausa inicial vertical */
+  80% {
+    transform: rotate(360deg);
+  } /* Termina de rotar antes de irse */
+  90% {
+    transform: translateY(0) scale(1.2) rotate(360deg);
+    opacity: 1;
+  } /* Se queda vertical arriba */
+  100% {
+    transform: translateY(-60px) scale(0) rotate(360deg);
+    opacity: 0;
+  } /* Desaparece vertical */
+}
+
+.progress-container {
+  width: 400px;
+  height: 25px;
+  background: #111827;
+  border-radius: 20px;
+  margin: 20px auto;
+  border: 4px solid #ffcb05;
+  overflow: hidden;
+  position: relative;
+}
+.progress-bar {
+  height: 100%;
+  background: #ffcb05;
+  transition: width 0.15s linear;
+}
+.percentage {
+  font-size: 5rem;
+  color: #ffcb05;
+  text-shadow: 3px 3px #3b4cca;
+  margin-top: 10px;
+}
+
+/* --- GRID --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 30px;
+}
+.card-set {
+  background: #161e2e;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  border: 3px solid #2d3748;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.set-logo-container {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.set-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.card-pokemon {
+  background: #161e2e;
+  border-radius: 15px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #2d3748;
+}
+.card-img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.price-neon {
+  color: #39ff14;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px #39ff14;
+}
+
+/* --- MODAL --- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+.modal {
+  background: #0f172a;
+  border-radius: 30px;
+  border: 5px solid #ffcb05;
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-content {
+  display: flex;
+  gap: 25px;
+  padding: 30px;
+}
+.modal-left {
+  flex: 1;
+}
+.modal-right {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modal-img {
+  width: 100%;
+  border-radius: 12px;
+  border: 3px solid #3b4cca;
+}
+.modal-title-main {
+  font-size: 2.5rem;
+  color: #ffcb05;
+  text-shadow: 3px 3px #3b4cca;
+  margin: 0;
+}
+.modal-badges {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+.badge-type {
+  background: #3b4cca;
+  padding: 5px 15px;
+  border-radius: 10px;
+  border: 1px solid #ffcb05;
+}
+.badge-hp {
+  background: #e11d48;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+.info-item span {
+  color: #94a3b8;
+  font-size: 0.7rem;
+  display: block;
+}
+.price-section-mini {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: rgba(57, 255, 20, 0.1);
+  border-radius: 15px;
+  border: 1px dashed #39ff14;
+}
+.price-value-mini {
+  font-size: 3rem;
+  color: #39ff14;
+  text-shadow: 0 0 10px #39ff14;
+  margin: 5px 0;
+}
+.button-group-mini {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.btn-shop-mini {
+  text-align: center;
+  padding: 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.btn-shop-mini.cm {
+  background: #2563eb;
+  border-bottom: 4px solid #1e40af;
+}
+.btn-shop-mini.pc {
+  background: #16a34a;
+  border-bottom: 4px solid #14532d;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 3rem;
+  color: #ffcb05;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
